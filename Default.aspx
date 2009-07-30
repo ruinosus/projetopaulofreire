@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -8,7 +8,17 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Table ID="tblProdutoMarca" Width="100%" runat="server">
+        <table id="Table2" width="100%" style="border: 1px solid;">
+                <tr>
+                    <td style="border-right: 1px solid; border-top: 1px solid; border-left: 1px solid;
+                        border-bottom: 1px solid; background-color: #F1F4FD" align="center">
+                        <asp:Label ID="Label5" runat="server" Text="Outras informações cadastrais" Font-Bold="true">
+                        </asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="justify">
+                        <asp:Table ID="tblProdutoMarca" Width="100%" runat="server">
                             <asp:TableRow ID="linha1" runat="server">
                                 <asp:TableCell ID="subMarca1Coluna" HorizontalAlign="right" Visible="true">
                                     <asp:Label ID="lblSubMarca" runat="server" Text="Sub-marca:">
@@ -53,7 +63,10 @@
                                 </asp:TableCell>
                                 <asp:TableCell ID="tamanho2Coluna" HorizontalAlign="Left" Visible="true">
                                     <asp:TextBox ID="txtTamanho" runat="server" CssClass="txt200" Visible="true" MaxLength="30"></asp:TextBox>&nbsp;
-                                    <
+                                    <cc1:MaskedEditExtender ID="mskTamanho" runat="server" TargetControlID="txtTamanho"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
+                                    
                                 </asp:TableCell>
                                 <asp:TableCell ID="gramatura1Coluna" HorizontalAlign="right" Visible="true">
                                      <asp:Label ID="lblNumeroDaGramatura" runat="server" Text="Gramatura:" Visible="true">
@@ -63,7 +76,9 @@
                                     <asp:TextBox ID="txtNumeroDaGramatura" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="6"></asp:TextBox>&nbsp;<asp:Label ID="lblGramas" runat="server" Text="gramas"
                                             Visible="False"></asp:Label>
-                                    
+                                    <cc1:MaskedEditExtender ID="mskNumeroGramatura" runat="server" TargetControlID="txtNumeroDaGramatura"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow ID="linha3" runat="server">
@@ -74,7 +89,9 @@
                                 <asp:TableCell ID="quantidadeFios2Coluna" HorizontalAlign="Left" Visible="true">
                                     <asp:TextBox ID="txtQuantidadedeFios" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="5"></asp:TextBox>&nbsp;
-                                    
+                                    <cc1:MaskedEditExtender ID="mskQuantidadeFios" runat="server" TargetControlID="txtQuantidadedeFios"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                                 <asp:TableCell ID="fibra1Coluna" HorizontalAlign="right" Visible="true">
                                      <asp:Label ID="lblPercentualFibras" runat="server" Text="Fibras do produto:" Visible="true">
@@ -84,7 +101,9 @@
                                     <asp:TextBox ID="txtPercentualFibras" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="6"></asp:TextBox>&nbsp;<asp:Label ID="lblPercentual" runat="server" Text="%"
                                             Visible="true"></asp:Label>
-                                    
+                                    <cc1:MaskedEditExtender ID="mskPercentualFibras" runat="server" TargetControlID="txtPercentualFibras"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                                 <asp:TableCell ID="voltagem1Coluna" HorizontalAlign="right" Visible="true">
                                      <asp:Label ID="lblVoltagem" runat="server" Text="Voltagem:" Visible="true">
@@ -103,7 +122,9 @@
                                     <asp:TextBox ID="txtQuantidadeDePesoBruto" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="6" ></asp:TextBox>
                                     <asp:Label ID="lblkgBruto" runat="server" Text="Kg" Visible="true"></asp:Label>
-                                    
+                                    <cc1:MaskedEditExtender ID="mskQuantidadePesoBruto" runat="server" TargetControlID="txtQuantidadeDePesoBruto"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                                 <asp:TableCell ID="pesoLiquido1Coluna" HorizontalAlign="right" Visible="true">
                                      <asp:Label ID="lblQuantidadeDePesoLiquido" runat="server" Text="Peso Liquido:" Visible="true">
@@ -113,7 +134,9 @@
                                     <asp:TextBox ID="txtQuantidadeDePesoLiquido" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="6"></asp:TextBox>
                                     <asp:Label ID="lblKgLiquido" runat="server" Text="Kg" Visible="true"></asp:Label>
-                                    
+                                    <cc1:MaskedEditExtender ID="mskQuantidadePesoLiquido" runat="server" TargetControlID="txtQuantidadeDePesoLiquido"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                                 <asp:TableCell ID="embalagem1Coluna" HorizontalAlign="right" Visible="true">
                                      <asp:Label ID="lblEmbalagem" runat="server" Text="Tipo da embalagem:" Visible="true"></asp:Label> 
@@ -131,7 +154,9 @@
                                 <asp:TableCell ID="quantidadeEmbalagem2Coluna" HorizontalAlign="Left" Visible="true">
                                     <asp:TextBox ID="txtQuantidadeEmbalagem" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="6"></asp:TextBox>
-                                    
+                                    <cc1:MaskedEditExtender ID="mskQuantidadeEmbalagem" runat="server" TargetControlID="txtQuantidadeEmbalagem"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                                 <asp:TableCell ID="ipi1Coluna" HorizontalAlign="right" Visible="true">
                                     <asp:Label ID="lblIpi" runat="server" Text="Aliquota do IPI:" Visible="true"></asp:Label>
@@ -140,7 +165,9 @@
                                     <asp:TextBox ID="txtIpi" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="6"></asp:TextBox>&nbsp;<asp:Label ID="lblIpiPercentual" runat="server" Text="%"
                                             Visible="true"></asp:Label>
-                                    
+                                    <cc1:MaskedEditExtender ID="mskIpi" runat="server" TargetControlID="txtIpi"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                                 <asp:TableCell ID="icms1Coluna" HorizontalAlign="right" Visible="true">
                                     <asp:Label ID="lblIcms" runat="server" Text="Aliquota do ICMS:" Visible="true">
@@ -150,7 +177,9 @@
                                   <asp:TextBox ID="txtIcms" runat="server" CssClass="txt200" Visible="true"
                                         MaxLength="6"></asp:TextBox>&nbsp;<asp:Label ID="lblIcmsPercentual" runat="server" Text="%"
                                             Visible="true"></asp:Label>
-                                    
+                                    <cc1:MaskedEditExtender ID="mskIcms" runat="server" TargetControlID="txtIcms"
+                                        MaskType="none" Mask="999999999" ClearMaskOnLostFocus="true">
+                                    </cc1:MaskedEditExtender>
                                 </asp:TableCell>
                             </asp:TableRow>
                             
@@ -160,16 +189,32 @@
                                 </asp:TableCell>
                                 <asp:TableCell ID="ncm2Coluna" HorizontalAlign="Left" Visible="true">
                                     <asp:TextBox ID="txtNcm" runat="server" CssClass="txt200" Visible="true"
-                                        MaxLength="10"></asp:TextBox>
-                                   
+                                        MaxLength="10"></asp:TextBox>                                   
                                 </asp:TableCell>
                                 
+                                <asp:TableCell ID="TableCell1" HorizontalAlign="right" Visible="false">
+                                  
+                                </asp:TableCell>
+                                <asp:TableCell ID="TableCell2" HorizontalAlign="Left" Visible="false">
+                                                                    
+                                </asp:TableCell>
                                 
+                                <asp:TableCell ID="TableCell3" HorizontalAlign="right" Visible="false">
+                                
+                                </asp:TableCell>
+                                <asp:TableCell ID="TableCell4" HorizontalAlign="Left" Visible="false">
+                                                             
+                                </asp:TableCell>
                             </asp:TableRow>
                         </asp:Table>
+                    </td>
+                </tr>
+            </table>
         
         <asp:Button ID="btnTeste" runat="server" OnClick="btnTeste_OnClick" Text="ok" />
     </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     </form>
 </body>
 </html>
