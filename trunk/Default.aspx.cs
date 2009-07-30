@@ -37,28 +37,150 @@ public partial class _Default : System.Web.UI.Page
         classe = false;
         apresentacao = true;
         modelo = false;
-        tamanho = true;
+        tamanho = false;
         gramatura = false;
         quantidadeFios = false;
         fibra = true;
-        voltagem = false;
-        pesoBruto = true;
+        voltagem = true;
+        pesoBruto = false;
         pesoLiquido = true;
-        embalagem = true;
+        embalagem = false;
         quantidadeEmbalagem = false;
-        ipi = false;
+        ipi = true;
         icms = false;
         ncm = true;
 
         HabilitarComponentes();
+        MontarTabela();
+    }
+
+    private List<int> AcharPosicaoVazia()
+    {
+        List<int> posicao = new List<int>();
+
+        for (int i = 0; i < tblProdutoMarca.Rows.Count; i++)
+        {
+            for (int j = 0; j < tblProdutoMarca.Rows[i].Cells.Count; j++)
+            {
+                if (!tblProdutoMarca.Rows[i].Cells[j].Visible)
+                {
+                    posicao.Add(i);
+                    posicao.Add(j);
+                    return posicao;
+                }
+            }
+        }
+
+        return posicao;
+    }
+
+    private int CalcularColunaVazia(int indiceLinha)
+    {
+        int resultado = 0;
+
+        for (int i = 0; i < tblProdutoMarca.Rows[indiceLinha].Cells.Count; i++)
+        {
+            if (!tblProdutoMarca.Rows[indiceLinha].Cells[i].Visible)
+                resultado++;
+        }
+
+        return resultado;
+    }
+
+    private List<int> AcharProximoElemento(int indiceLinha, int indiceColuna)
+    {
+        List<int> posicao = new List<int>();
+
+        for (int i = indiceLinha; i < tblProdutoMarca.Rows.Count; i++)
+        {
+            if (!(CalcularColunaVazia(i) == 0))
+            {
+                if (i > indiceLinha)
+                    indiceColuna = 0;
+                for (int j = indiceColuna; j < tblProdutoMarca.Rows[i].Cells.Count; j++)
+                {
+                    if (tblProdutoMarca.Rows[i].Cells[j].Visible)
+                    {
+                        posicao.Add(i);
+                        posicao.Add(j);
+                        return posicao;
+                    }
+                }
+            }
+        }
+
+        return posicao;
 
     }
 
-    private void ValidarComponentes()
+    private void MontarTabela()
     {
+        List<int> posicaoVazia = this.AcharPosicaoVazia();
+
+        if (posicaoVazia.Count > 0)
+        {
+            List<int> proximoElemento = this.AcharProximoElemento(posicaoVazia[0], posicaoVazia[1]);
+
+            if (proximoElemento.Count > 0)
+            {
+                tblProdutoMarca.Rows[posicaoVazia[0]].
+                    Cells[posicaoVazia[1]].Controls.Clear();
+
+                tblProdutoMarca.Rows[posicaoVazia[0]].
+                    Cells[posicaoVazia[1] + 1].Controls.Clear();
+
+                for (int i = 0; i < tblProdutoMarca.
+                        Rows[proximoElemento[0]].
+                            Cells[proximoElemento[1]].Controls.Count; i++)
+                    tblProdutoMarca.Rows[posicaoVazia[0]].
+                        Cells[posicaoVazia[1]].Controls.Add(tblProdutoMarca.
+                            Rows[proximoElemento[0]].
+                                Cells[proximoElemento[1]].Controls[i]);
+
+                for (int i = 0; i < tblProdutoMarca.
+                        Rows[proximoElemento[0]].
+                            Cells[proximoElemento[1] + 1].Controls.Count; i++)
+                    tblProdutoMarca.Rows[posicaoVazia[0]].
+                        Cells[posicaoVazia[1] + 1].Controls.Add(tblProdutoMarca.
+                            Rows[proximoElemento[0]].
+                                Cells[proximoElemento[1] + 1].Controls[i]);
+
+                tblProdutoMarca.
+                        Rows[proximoElemento[0]].
+                            Cells[proximoElemento[1] + 1].Controls.Clear();
+                tblProdutoMarca.
+                        Rows[proximoElemento[0]].
+                            Cells[proximoElemento[1]].Controls.Clear();
+
+                tblProdutoMarca.
+                        Rows[proximoElemento[0]].
+                            Cells[proximoElemento[1] + 1].Visible = false;
+                tblProdutoMarca.
+                        Rows[proximoElemento[0]].
+                            Cells[proximoElemento[1]].Visible = false;
+
+                if (CalcularColunaVazia(proximoElemento[0]) == 6)
+                    tblProdutoMarca.
+                        Rows[proximoElemento[0]].Visible = false;
+
+                tblProdutoMarca.Rows[posicaoVazia[0]].Visible = true;
+                tblProdutoMarca.Rows[posicaoVazia[0]].
+                   Cells[posicaoVazia[1]].Visible = true;
+
+                tblProdutoMarca.Rows[posicaoVazia[0]].
+                    Cells[posicaoVazia[1] + 1].Visible = true;
+
+                posicaoVazia.Clear();
+                posicaoVazia = this.AcharPosicaoVazia();
+
+                if (posicaoVazia.Count > 0 && proximoElemento.Count > 0)
+                    MontarTabela();
+                else
+                    return;
 
 
-
+            }
+        }
 
     }
 
