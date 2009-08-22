@@ -3,7 +3,7 @@ using System.Text;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace Ppf.Util.Seguranca
+namespace Ppf.ModuloAuxiliar.Util.Seguranca
 {
     /// <summary>
     /// Enumerator com os tipos de classes para criação de Hash.

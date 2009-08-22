@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Ppf.ModuloAuxiliar.BaseFiltro;
+using System.Web.Security;
+using Ppf.ModuloAuxiliar.BaseRepositorio;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -27,18 +30,93 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        BaseRepositorio rep = new BaseRepositorio();
+
+        string texto = "select * from professores";
+
+        MembershipUser user;
+        if (!IsPostBack)
+        {
+            if (Session["teste1"] != null)
+            {
+                subMarca = true;
+                classe = true;
+                apresentacao = true;
+                modelo = false;
+                tamanho = false;
+                gramatura = true;
+                quantidadeFios = false;
+                fibra = true;
+                voltagem = true;
+                pesoBruto = false;
+                pesoLiquido = true;
+                embalagem = false;
+                quantidadeEmbalagem = false;
+                ipi = true;
+                icms = true;
+                ncm = true;
+
+                HabilitarComponentes();
+                MontarTabela();
+                Session["teste2"] = null;
+
+            }
+
+            if (Session["teste2"] != null)
+            {
+                subMarca = true;
+                classe = false;
+                apresentacao = false;
+                modelo = false;
+                tamanho = false;
+                gramatura = true;
+                quantidadeFios = false;
+                fibra = false;
+                voltagem = true;
+                pesoBruto = false;
+                pesoLiquido = false;
+                embalagem = true;
+                quantidadeEmbalagem = false;
+                ipi = false;
+                icms = false;
+                ncm = false;
+
+                HabilitarComponentes();
+                MontarTabela();
+
+            }
+        }
+       //Roles roles;
+        //if (!IsPostBack)
+        //{
+        //    Session.Add("linhas", tblProdutoMarca.Rows);
+        //}
+        //else
+        //{
+        //    //this.Controls.Remove(tblProdutoMarca);
+        //    //this.Controls.Add(Session["linhas"] as Table);
+        //   // tblProdutoMarca.Rows.Clear();
+            
+
+
+        //}
+
     }
 
     protected void btnTeste_OnClick(object sender, EventArgs e)
     {
 
 
+        //if (Session["teste1"] != null)
+        //    return;
+        Session.Add("teste1", true);
+        Session["teste2"] = null;
         subMarca = true;
-        classe = false;
+        classe = true;
         apresentacao = true;
         modelo = false;
         tamanho = false;
-        gramatura = false;
+        gramatura = true;
         quantidadeFios = false;
         fibra = true;
         voltagem = true;
@@ -47,11 +125,43 @@ public partial class _Default : System.Web.UI.Page
         embalagem = false;
         quantidadeEmbalagem = false;
         ipi = true;
-        icms = false;
+        icms = true;
         ncm = true;
 
         HabilitarComponentes();
         MontarTabela();
+
+        
+    }
+
+    protected void btnTeste2_OnClick(object sender, EventArgs e)
+    {
+
+        //if (Session["teste2"] != null)
+        //    return;
+
+        Session.Add("teste2", true);
+        Session["teste1"] = null;
+        subMarca = true;
+        classe = false;
+        apresentacao = false;
+        modelo = false;
+        tamanho = false;
+        gramatura = true;
+        quantidadeFios = false;
+        fibra = false;
+        voltagem = true;
+        pesoBruto = false;
+        pesoLiquido = false;
+        embalagem = true;
+        quantidadeEmbalagem = false;
+        ipi = false;
+        icms = false;
+        ncm = false;
+
+        HabilitarComponentes();
+        MontarTabela();
+        
     }
 
     private List<int> AcharPosicaoVazia()
@@ -248,9 +358,27 @@ public partial class _Default : System.Web.UI.Page
         ncm1Coluna.Visible = ncm;
         ncm2Coluna.Visible = ncm;
 
+        TableCell1.Visible = false;
+        TableCell2.Visible = false;
+        TableCell3.Visible = false;
+        TableCell4.Visible = false;
+
 
     }
 
 
 
+    protected void tblProdutoMarca_Disposed(object sender, EventArgs e)
+    {
+        tblProdutoMarca.Rows.Clear();
+    }
+    protected void tblProdutoMarca_PreRender(object sender, EventArgs e)
+    {
+        //TableRowCollection linhas = Session["linhas"] as TableRowCollection;
+        //for (int i = 0; i < linhas.Count; i++)
+        //{
+
+        //    tblProdutoMarca.Rows.Add(linhas[i]);
+        //}
+    }
 }
