@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-namespace ModuloAuxiliar
+namespace Ppf.ModuloAuxiliar.Util
 {
     /// <summary>
     /// Classe utilitária para validações de digito verificador

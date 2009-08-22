@@ -9,7 +9,7 @@ using Ppf.ModuloConexao;
 
 
 
-namespace Ppf.ModuloAuxiliar.BaseFiltro
+namespace Ppf.ModuloAuxiliar.BaseRepositorio
 {
     public class BaseRepositorio
     {

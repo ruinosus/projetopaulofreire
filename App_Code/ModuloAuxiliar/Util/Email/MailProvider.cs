@@ -14,7 +14,7 @@ using System.Text;
 /// Summary description for MailProvider
 /// </summary>
 /// 
-namespace Ppf.ModuloAuxiliar.Util.Mail
+namespace Ppf.ModuloAuxiliar.Util.Email
 {
     public class MailProvider
     {
