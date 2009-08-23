@@ -23,4 +23,21 @@
             </td>
         </tr>
     </table>
+    <ajax:UpdatePanel ID="updBotoes" runat="server" UpdateMode="Conditional"  >
+                    <ContentTemplate>
+    <table width="100%">
+        <tr align="center">
+            <td align="center" valign="top">
+                <asp:Button ID="btnIncluir" runat="server" Text="Incluir" CausesValidation="False"
+                    TabIndex="3" onclick="btnIncluir_Click" />
+                <asp:Button ID="btnAlterar" runat="server" Text="Alterar" CausesValidation="False"
+                    TabIndex="4" />
+                <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CausesValidation="False"
+                    TabIndex="5" />
+                <asp:Button ID="btnRetornar" runat="server" Text="Retornar" CausesValidation="false" />
+            </td>
+        </tr>
+    </table>
+    </ContentTemplate>
+    </ajax:UpdatePanel>
 </asp:Content>

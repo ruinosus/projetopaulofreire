@@ -229,7 +229,7 @@ namespace Ppf.ModuloCoordenador.Repositorios
                     if (filtro["DATA_NASCIMENTO"])
                     {
                         if (sqlDataReader["DATA_NASCIMENTO"] != DBNull.Value)
-                            coordenador.DataNascimento = Convert.ToDateTime(sqlDataReader["DATA_NASCIMENTO"]);
+                            coordenador.DataNascimento = Convert.ToString(sqlDataReader["DATA_NASCIMENTO"]);
                     }
                     if (filtro["EMAIL"])
                     {
@@ -306,7 +306,7 @@ namespace Ppf.ModuloCoordenador.Repositorios
                     if (filtro["DATA_EMISSAO"])
                     {
                         if (sqlDataReader["DATA_EMISSAO"] != DBNull.Value)
-                            coordenador.Rg.DataExpedicao = Convert.ToDateTime(sqlDataReader["DATA_EMISSAO"]);
+                            coordenador.Rg.DataExpedicao = Convert.ToString(sqlDataReader["DATA_EMISSAO"]);
                     }
 
                     if (filtro["ORGAO_EXPEDITOR"])

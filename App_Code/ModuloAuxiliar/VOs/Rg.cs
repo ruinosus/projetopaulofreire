@@ -20,11 +20,11 @@ namespace Ppf.ModuloAuxuliar.VOs
             set { numero = value; }
         }
 
-        private DateTime dataExpedicao;
+        private string dataExpedicao;
         /// <summary>
         /// Propriedade relacionada a Data de Expedicao do Rg.
         /// </summary>
-        public DateTime DataExpedicao
+        public string DataExpedicao
         {
             get { return dataExpedicao; }
             set { dataExpedicao = value; }

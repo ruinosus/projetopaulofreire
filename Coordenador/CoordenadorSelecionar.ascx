@@ -27,7 +27,7 @@
         <td align="center">
             <asp:GridView ID="GrdCoordenador" runat="server" AutoGenerateColumns="False" AllowPaging="True"
                 Width="100%" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px"
-                CellPadding="3" GridLines="Vertical"  OnPageIndexChanging="grdCoordenador_PageIndexChanging" 
+                CellPadding="3" GridLines="Vertical" OnPageIndexChanging="grdCoordenador_PageIndexChanging"
                 OnRowCreated="grdCoordenador_RowCreated" OnPreRender="grdCoordenador_PreRender">
                 <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
                 <Columns>
@@ -41,7 +41,22 @@
                         <ItemTemplate>
                             <asp:Label ID="lblNome" AssociatedControlID="idCoordenador" runat="server" Text='<%# Eval("Nome") %>' />
                         </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="95%" />
+                        <ItemStyle HorizontalAlign="Center" Width="40%" />
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Data de Nascimento">
+                        <ItemTemplate>
+                            <asp:Label ID="lblDataNascimento" AssociatedControlID="idCoordenador" runat="server"
+                                Text='<%# GetDataNascimento(Eval("DataNascimento")) %>' />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="10%" />
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Endereço">
+                        <ItemTemplate>
+                            <asp:Label ID="lblEndereco" AssociatedControlID="idCoordenador" runat="server" Text='<%# Eval("EnderecoAtual.Logradouro") %>' />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="15%" />
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
                 </Columns>

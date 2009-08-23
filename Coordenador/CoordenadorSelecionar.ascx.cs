@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Ppf.ModuloCoordenador.Filtros;
 using Ppf.ModuloCoordenador.Processos;
+using Ppf.ModuloCoordenador.Excecoes;
 
 public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserControl, System.Web.UI.IPostBackEventHandler
 {
@@ -61,7 +62,7 @@ public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserContr
 
     void IPostBackEventHandler.RaisePostBackEvent(string eventArgument)
     {
-        idCoordenador = Convert.ToInt32(eventArgument);
+        IdCoordenador = Convert.ToInt32(eventArgument);
 
         // Verifica se existe algum Evento relacionado
         if (OnSelect != null)
@@ -116,6 +117,26 @@ public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserContr
         return "checkOnlyOne(this,'idCoordenador');";
     }
 
+    private void ClearSession()
+    {
+        Session.Remove("idCoordenador");
+        Session.Remove("CoordenadorLista");
+    }
+
+    protected string GetDataNascimento(object dataNascimento)
+    {
+        string resultado = "-";
+
+        if (dataNascimento != null && !string.IsNullOrEmpty(dataNascimento.ToString()))
+        {
+            string dataEditada = (string)dataNascimento;
+            resultado = string.Concat(dataEditada.Substring(0, 2), "/", dataEditada.Substring(2, 2), "/", dataEditada.Substring(4, 4));
+        }
+
+        return resultado;
+
+    }
+
     #endregion
 
     #region Métodos Publicos
@@ -123,12 +144,12 @@ public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserContr
     public void Consultar()
     {
         CoordenadorFiltroConsulta filtro = new CoordenadorFiltroConsulta();
-        filtro.ID = true;
-        filtro.Nome = true;
+        filtro.HabilitaTudo();
+
         CoordenadorVO coordenador = new CoordenadorVO();
         ICoordenadorProcesso processo = CoordenadorProcesso.Instance;
 
-        coordenador.Nome = txtNome.Text;
+        coordenador.Nome = txtNome.Text.Trim();
 
         CoordenadorLista = processo.Consultar(coordenador, filtro, true);
 
@@ -148,19 +169,29 @@ public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserContr
             PreencherGridVazio();
         }
     }
-    #endregion    
+    #endregion
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            ClearSession();
             PreencherGridVazio();
         }
     }
 
     protected void btnPesquisar_OnClick(object sender, EventArgs e)
     {
-        Consultar();
+        if (!string.IsNullOrEmpty(txtNome.Text.Trim()))
+        {
+            Consultar();
+        }
+        else
+        {
+            PreencherGridVazio();
+            cvaAvisoDeErro.ErrorMessage = ConstantesCoordenador.COORDENADOR_NOMENAOINFORMADO;
+            cvaAvisoDeErro.IsValid = false;
+        }
     }
 
     protected void grdCoordenador_RowCreated(object sender, GridViewRowEventArgs e)
@@ -195,5 +226,5 @@ public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserContr
         }
     }
 
-    
+
 }
