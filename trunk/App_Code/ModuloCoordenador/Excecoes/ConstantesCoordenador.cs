@@ -19,6 +19,7 @@ namespace Ppf.ModuloCoordenador.Excecoes
         public static readonly String COORDENADOR_ALTERADOCOMSUCESSO = "Coordenador alterado com sucesso.";
         public static readonly String COORDENADOR_JACADASTRADO = "Coordenador já cadastrado.";
         public static readonly String COORDENADOR_JAUTILIZADO = "Coordenador já utilizado não pode ser excluído.";
+        public static readonly String COORDENADOR_NOMENAOINFORMADO = "Informe o nome do Coordenador.";
 
     }
 }

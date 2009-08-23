@@ -14,7 +14,7 @@ namespace Ppf.ModuloAuxuliar.VOs
         private int id;
         private string nome;
         private string cpf;
-        private DateTime dataNascimento;
+        private string dataNascimento;
         private char sexo;
         private string email;
         private string entidade;
@@ -116,7 +116,7 @@ namespace Ppf.ModuloAuxuliar.VOs
             set { sexo = value; }
         }
 
-        public DateTime DataNascimento
+        public string DataNascimento
         {
             get { return dataNascimento; }
             set { dataNascimento = value; }
