@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Title="Coordenador - Consultar" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     CodeFile="Consultar.aspx.cs" Inherits="Coordenador_Consultar" %>
 
 <%@ Register Src="CoordenadorSelecionar.ascx" TagName="CoordenadorSelecionar" TagPrefix="uc1" %>
@@ -8,6 +8,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<table width="100%">
+        <tr align="center">
+            <td align="center">
+                <ajax:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="300" AssociatedUpdatePanelID="updPanelProdutoConsultar">
+                    <ProgressTemplate>
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/App_Themes/loading.gif" />
+                    </ProgressTemplate>
+                </ajax:UpdateProgress>
+            </td>
+        </tr>
+    </table>
     <table id="conteudo" width="100%">
         <tr>
             <td>

@@ -18,7 +18,7 @@
         <td align="center">
             <asp:Label ID="lblNome" runat="server" Text="Nome:" Font-Names="Arial"></asp:Label>
             <asp:TextBox ID="txtNome" runat="server" Width="300px" ValidationGroup="AvisoDeErro"
-                MaxLength="100"></asp:TextBox>
+                MaxLength="100" AssociatedControlID="btnPesquisar"></asp:TextBox>
             <asp:Button ID="btnPesquisar" runat="server" Style="position: relative" Text="Pesquisar"
                 TabIndex="2" OnClick="btnPesquisar_OnClick" />
         </td>
@@ -35,7 +35,7 @@
                         <ItemTemplate>
                             <asp:RadioButton ID="idCoordenador" runat="server" value='<%# Eval("ID") %>' onclick='<%# GetOnSelectEvent(Eval("ID"))%>' />
                         </ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="5%" />
+                        <ItemStyle HorizontalAlign="Center" Width="2%" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Nome">
                         <ItemTemplate>
@@ -52,6 +52,20 @@
                         <ItemStyle HorizontalAlign="Center" Width="10%" />
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Cpf">
+                        <ItemTemplate>
+                            <asp:Label ID="lblCpf" AssociatedControlID="idCoordenador" runat="server" Text='<%# GetCpf( Eval("CPF")) %>' />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="10%" />
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Identidade">
+                        <ItemTemplate>
+                            <asp:Label ID="lblIdentidade" AssociatedControlID="idCoordenador" runat="server" Text='<%# GetRg(Eval("Rg.Numero")) %>' />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="10%" />
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
                     <asp:TemplateField HeaderText="Endereço">
                         <ItemTemplate>
                             <asp:Label ID="lblEndereco" AssociatedControlID="idCoordenador" runat="server" Text='<%# Eval("EnderecoAtual.Logradouro") %>' />
@@ -59,6 +73,8 @@
                         <ItemStyle HorizontalAlign="Center" Width="15%" />
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
+                    
+                    
                 </Columns>
                 <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                 <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />

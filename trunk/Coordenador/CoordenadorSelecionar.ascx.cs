@@ -137,6 +137,34 @@ public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserContr
 
     }
 
+    protected string GetCpf(object cpf)
+    {
+        string resultado = "-";
+
+        if (cpf != null && !string.IsNullOrEmpty(cpf.ToString()))
+        {
+            string cpfEditado = (string)cpf;
+            resultado = string.Concat(cpfEditado.Substring(0, 3), ".", cpfEditado.Substring(3, 3), ".", cpfEditado.Substring(6, 3), "-", cpfEditado.Substring(9, 2));
+        }
+
+        return resultado;
+
+    }
+
+    protected string GetRg(object rg)
+    {
+        string resultado = "-";
+
+        if (rg != null && !string.IsNullOrEmpty(rg.ToString()))
+        {
+            string rgEditado = (string)rg;
+            resultado = string.Concat(rgEditado.Substring(0, 1), ".", rgEditado.Substring(1, 3), ".", rgEditado.Substring(4, 3));
+        }
+
+        return resultado;
+
+    }
+
     #endregion
 
     #region Métodos Publicos
@@ -151,7 +179,12 @@ public partial class Coordenador_CoordenadorSelecionar : System.Web.UI.UserContr
 
         coordenador.Nome = txtNome.Text.Trim();
 
-        CoordenadorLista = processo.Consultar(coordenador, filtro, true);
+        List<CoordenadorVO> lista = processo.Consultar(coordenador, filtro, true);
+
+        var resultado = from c in lista
+                        orderby c.Nome
+                        select c;
+        CoordenadorLista = resultado.ToList();
 
         CarregarGrid();
 
